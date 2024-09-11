@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7">
+
+    <!-- Patient Name -->
+    <TextView
+        android:id="@+id/patientName"
+        android:text="Patient Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#3F51B5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"/>
+
+    <!-- Patient Age -->
+    <TextView
+        android:id="@+id/patientAge"
+        android:text="Age: 30"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"/>
+
+    <!-- Patient Condition -->
+    <TextView
+        android:id="@+id/patientCondition"
+        android:text="Condition: Stable"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"/>
+
+    <!-- Patient Priority -->
+    <TextView
+        android:id="@+id/patientPriority"
+        android:text="Priority: High"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"/>
+
+    <!-- Patient Address -->
+    <TextView
+        android:id="@+id/patientAddress"
+        android:text="Address: 123 Main St, City"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp"/>
+
+    <!-- Allot Bed Button -->
+    <Button
+        android:id="@+id/alotBedButton"
+        android:text="Allot Bed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"/>
+
+    <!-- Call Patient Button -->
+    <Button
+        android:id="@+id/callPatientButton"
+        android:text="Call Patient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3F51B5"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:background="@drawable/rounded_button"/>
+</LinearLayout>

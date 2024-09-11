@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- My Profile Button -->
+        <Button
+            android:id="@+id/myProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#3F51B5"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button"
+            android:drawableStart="@drawable/ic_profile" />
+
+        <!-- Patients Heading -->
+        <TextView
+            android:text="Patients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#FF5722"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search beds or patients"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_search"
+            android:inputType="text"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Patient RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/patientRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp" />
+
+        <!-- Beds Heading -->
+        <TextView
+            android:text="Beds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#FF5722"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Bed RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_recyclerview"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Filter Button for Available Beds -->
+        <Button
+            android:id="@+id/btnFilterBeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Available Beds"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button" />
+
+        <!-- Bed Statistics -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/rounded_container"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvTotalBeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Beds: 0"
+                android:textSize="16sp"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAvailableBeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Available Beds: 0"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOccupiedBeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Occupied Beds: 0"
+                android:textSize="16sp"
+                android:textColor="#F44336"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBarBeds"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="50"
+                android:max="100"
+                android:progressTint="#3F51B5"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

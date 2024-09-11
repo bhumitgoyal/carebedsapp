@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7">
+
+    <!-- Bed ID -->
+    <TextView
+        android:id="@+id/bedId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bed ID"
+        android:textSize="18sp"
+        android:textColor="#FF5722"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Bed Status -->
+    <TextView
+        android:id="@+id/bedStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Hospital Name -->
+    <TextView
+        android:id="@+id/hospitalName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hospital Name"
+        android:textSize="16sp"
+        android:textColor="#757575"/>
+
+</LinearLayout>
