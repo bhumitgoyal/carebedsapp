@@ -34,28 +34,35 @@ class DashboardActivity : AppCompatActivity() {
         setupPatientRecyclerView()
         setupBedRecyclerView()
 
-        // My Profile button click listener
+        // Set up button click listeners
+        setupButtons()
+
+        // Update statistics and progress bar
+        updateBedStatistics()
+
+        // Set up search filter
+        setupSearchFilter()
+    }
+
+    private fun setupButtons() {
         binding.myProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivityForResult(intent, ADD_PATIENT_REQUEST_CODE)
         }
 
-        val filterButton = findViewById<Button>(R.id.btnFilterBeds)
-        filterButton.setOnClickListener {
-            showOnlyAvailableBeds = !showOnlyAvailableBeds
-            updateRecyclerView()
-            filterButton.text = if (showOnlyAvailableBeds) "Show All Beds" else "Show Available Beds"
+        binding.btnSortPatients.setOnClickListener {
+            sortPatientsByPriority()
         }
 
-        val tvTotalBeds = findViewById<TextView>(R.id.tvTotalBeds)
-        val tvAvailableBeds = findViewById<TextView>(R.id.tvAvailableBeds)
-        val tvOccupiedBeds = findViewById<TextView>(R.id.tvOccupiedBeds)
-        val progressBarBeds = findViewById<ProgressBar>(R.id.progressBarBeds)
+        binding.btnFilterBeds.setOnClickListener {
+            showOnlyAvailableBeds = !showOnlyAvailableBeds
+            updateRecyclerView()
+            binding.btnFilterBeds.text = if (showOnlyAvailableBeds) "Show All Beds" else "Show Available Beds"
+        }
+    }
 
-        updateBedStatistics(tvTotalBeds, tvAvailableBeds, tvOccupiedBeds, progressBarBeds)
-
-        val searchEditText = findViewById<EditText>(R.id.etSearch)
-        searchEditText.addTextChangedListener(object : TextWatcher {
+    private fun setupSearchFilter() {
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 filterResults(s.toString())
             }
@@ -66,10 +73,15 @@ class DashboardActivity : AppCompatActivity() {
         })
     }
 
+    private fun sortPatientsByPriority() {
+        val sortedPatients = patientRepository.getAllPatients().sortedBy { it.priority_num }
+        patientAdapter.updateData(sortedPatients)
+    }
+
     private fun populateDummyPatients() {
-        patientRepository.addPatient(Patient(1, "John Doe", 30, "Male", "john.doe@gmail.com", "1234567890", "Critical", "High", "123 Main St"))
-        patientRepository.addPatient(Patient(2, "Jane Smith", 25, "Female", "jane.smith@gmail.com", "0987654321", "Stable", "Medium", "456 Broadway"))
-        patientRepository.addPatient(Patient(3, "Alan Turing", 70, "Female", "alan.turing@hotmail.com", "9818646823", "Stable", "Low", "Vellore Road"))
+        patientRepository.addPatient(Patient(1, "John Doe", 30, "Male", "john.doe@gmail.com", "1234567890", "Critical", "High",0, "123 Main St"))
+        patientRepository.addPatient(Patient(2, "Jane Smith", 25, "Female", "jane.smith@gmail.com", "0987654321", "Stable", "Medium",1, "456 Broadway"))
+        patientRepository.addPatient(Patient(3, "Alan Turing", 70, "Female", "alan.turing@hotmail.com", "9818646823", "Stable", "Low", 2,"Vellore Road"))
     }
 
     private fun setupPatientRecyclerView() {
@@ -101,25 +113,25 @@ class DashboardActivity : AppCompatActivity() {
         } else {
             beds
         }
-        bedAdapter = BedAdapter(filteredBeds) { bed ->
-            val intent = Intent(this, BedDetailActivity::class.java)
-            intent.putExtra("bed", bed)
-            startActivity(intent)
-        }
-        binding.bedRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.bedRecyclerView.adapter = bedAdapter
+        bedAdapter.updateData(filteredBeds) // Update adapter with filtered data
     }
 
-    private fun updateBedStatistics(tvTotal: TextView, tvAvailable: TextView, tvOccupied: TextView, progressBar: ProgressBar) {
+    private fun updateBedStatistics() {
         val beds = BedRepository.beds
         val totalBeds = beds.size
         val availableBeds = beds.count { it.status == "Available" }
         val occupiedBeds = beds.count { it.status == "Occupied" }
-        tvTotal.text = "Total Beds: $totalBeds"
-        tvAvailable.text = "Available Beds: $availableBeds"
-        tvOccupied.text = "Occupied Beds: $occupiedBeds"
-        val occupancyPercentage = (occupiedBeds.toDouble() / totalBeds.toDouble()) * 100
-        progressBar.progress = occupancyPercentage.toInt()
+
+        binding.tvTotalBeds.text = "Total Beds: $totalBeds"
+        binding.tvAvailableBeds.text = "Available Beds: $availableBeds"
+        binding.tvOccupiedBeds.text = "Occupied Beds: $occupiedBeds"
+
+        val occupancyPercentage = if (totalBeds > 0) {
+            (occupiedBeds.toDouble() / totalBeds.toDouble()) * 100
+        } else {
+            0.0
+        }
+        binding.progressBarBeds.progress = occupancyPercentage.toInt()
     }
 
     private fun filterResults(query: String) {

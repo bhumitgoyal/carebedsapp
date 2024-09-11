@@ -7,4 +7,7 @@ interface PatientRepository {
     fun removePatient(id: Int)
     fun updatePatient(patient: Patient)
     fun setOnDataChangedListener(listener: () -> Unit)
+    fun generateUniqueToken(): Int
+    fun assignTokenToPatient(patientId: Int, token: Int, waitingTime: Long)
+    fun getPatientWaitingTime(patientId: Int): Long?
 }

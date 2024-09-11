@@ -11,6 +11,9 @@ data class Patient(
     val phoneNo: String,
     val condition: String,
     val priority: String,
+    val priority_num: Int,
     val address: String,
-    var bed: Bed? = null // initially no bed assigned
+    var bed: Bed? = null, // initially no bed assigned
+    var token: Int? = null, // to store token
+    var waitingTime: Long? = null // to store waiting time in milliseconds
 ) : Serializable

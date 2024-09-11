@@ -74,7 +74,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun addPatient(name: String, age: Int, phone: String) {
         // Generate a new patient ID
         val newId = (patientRepository.getAllPatients().maxOfOrNull { it.id } ?: 0) + 1
-        val newPatient = Patient(newId, name, age, "unknown", phone, "unknown", "unknown", "unknown", "unknown")
+        val newPatient = Patient(newId, name, age, "unknown", phone, "unknown", "unknown", "unknown",1, "unknown")
 
         // Add the patient to the repository
         patientRepository.addPatient(newPatient)

@@ -10,19 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:background="@drawable/input_field_background"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/etPatientAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Age"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:background="@drawable/input_field_background"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/etPatientPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone"
-        android:inputType="phone"/>
+        android:inputType="phone"
+        android:background="@drawable/input_field_background"
+        android:padding="12dp"
+        android:textSize="16sp"/>
 </LinearLayout>
